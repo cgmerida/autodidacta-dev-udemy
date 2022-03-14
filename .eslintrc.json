@@ -1,14 +1,29 @@
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json", // Required to have rules that rely on Types.
+    "tsconfigRootDir": "./"
+  },
   "plugins": [
-    "@typescript-eslint"
+    "@typescript-eslint",
+    "prettier"
   ],
   "extends": [
     "eslint:recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "airbnb",
+    "prettier"
   ],
-  "parserOptions": {
-    "project": "./tsconfig.json"
+  "rules": {
+    "no-console": "warn",
+    "prettier/prettier": "error",
+    "@typescript-eslint/indent": [
+      "error",
+      2
+    ],
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-explicit-any": "error"
   }
 }
