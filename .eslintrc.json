@@ -16,6 +16,12 @@
     "plugin:prettier/recommended"
   ],
   "rules": {
+    "no-underscore-dangle": [
+      "error",
+      {
+        "allowAfterThis": true
+      }
+    ],
     "no-console": "warn",
     "@typescript-eslint/indent": [
       "error",
