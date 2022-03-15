@@ -1,6 +1,8 @@
+import { HttpRequest, HttpResponse } from "../../interface/http-interface";
+
 export default class RegisterVehicle {
   // eslint-disable-next-line class-methods-use-this
-  handle = (httpRequest) => {
+  handle = (httpRequest: HttpRequest): HttpResponse => {
     const { name, model, year } = httpRequest.body;
     if (!name || !model || !year) {
       const error = `${!name ? "name" : ""} ${!model ? "model" : ""} ${
