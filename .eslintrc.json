@@ -2,8 +2,7 @@
   "root": true,
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": "./tsconfig.json", // Required to have rules that rely on Types.
-    "tsconfigRootDir": "./"
+    "project": "./tsconfig.json"
   },
   "plugins": [
     "@typescript-eslint"
@@ -12,10 +11,13 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "airbnb",
+    "plugin:import/typescript",
+    "airbnb-base",
+    "airbnb-typescript/base",
     "plugin:prettier/recommended"
   ],
   "rules": {
+    "quotes": "off",
     "no-underscore-dangle": [
       "error",
       {
