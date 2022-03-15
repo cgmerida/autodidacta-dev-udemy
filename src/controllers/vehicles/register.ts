@@ -1,5 +1,5 @@
-/* eslint-disable class-methods-use-this */
 export default class RegisterVehicle {
+  // eslint-disable-next-line class-methods-use-this
   handle = (httpRequest) => {
     const { name, model, year } = httpRequest.body;
     if (!name || !model || !year) {
