@@ -13,6 +13,6 @@ export default class RegisterVehicle {
         body: new Error(`Error in: ${error}`),
       };
     }
-    return true;
+    return { statusCode: 200, body: { message: "success" } };
   };
 }
