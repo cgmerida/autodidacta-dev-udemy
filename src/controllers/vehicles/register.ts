@@ -1,3 +1,4 @@
+import MissingFormalParameter from "../../errors/client-errors";
 import { HttpRequest, HttpResponse } from "../../interface/http-interface";
 
 export default class RegisterVehicle {
@@ -13,7 +14,7 @@ export default class RegisterVehicle {
     if (msg.length) {
       return {
         statusCode: 400,
-        body: new Error(`Error in: ${msg.trim().replace(/\s/gm, ", ")}`),
+        body: new MissingFormalParameter(`${msg.trim().replace(/\s/gm, ", ")}`),
       };
     }
     // const { name, model, year } = httpRequest.body;
