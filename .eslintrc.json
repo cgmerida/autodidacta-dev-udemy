@@ -32,7 +32,8 @@
     "@typescript-eslint/no-explicit-any": "off",
     // "@typescript-eslint/no-unused-vars": "error",
     // "no-unused-vars": [],
-    "no-unused-vars": "error"
+    "no-unused-vars": "error",
+    "class-methods-use-this": "warn"
   },
   "ignorePatterns": "**/*.spec.ts"
 }
