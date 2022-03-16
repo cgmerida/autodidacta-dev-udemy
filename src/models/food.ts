@@ -1,9 +1,7 @@
 import FoodHelper from "../helpers/food-model-helper";
 
 class Food {
-  constructor(private readonly food: FoodHelper) {
-    // Dependency Injection
-  }
+  constructor(private readonly food: FoodHelper) {}
 
   public get name(): string {
     return this.food.name;

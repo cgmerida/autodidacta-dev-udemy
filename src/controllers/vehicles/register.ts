@@ -1,5 +1,5 @@
 import MissingFormalParameter from "../../errors/client-errors";
-import { HttpRequest, HttpResponse } from "../../interface/http-interface";
+import { HttpRequest, HttpResponse } from "../../interfaces/http-interface";
 
 export default class RegisterVehicle {
   // eslint-disable-next-line class-methods-use-this
