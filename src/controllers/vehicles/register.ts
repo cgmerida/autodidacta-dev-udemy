@@ -3,18 +3,20 @@ import { HttpRequest, HttpResponse } from "../../interface/http-interface";
 export default class RegisterVehicle {
   // eslint-disable-next-line class-methods-use-this
   handle = (httpRequest: HttpRequest): HttpResponse => {
-    const { name, model, year } = httpRequest.body;
-    if (!name || !model || !year) {
-      const error = `${!name ? "name" : ""} ${!model ? "model" : ""} ${
-        !year ? "year" : ""
-      }`
-        .trim()
-        .replace(/\s/gm, ", ");
+    const requiredProps = ["name", "model", "year", "color"];
+    let msg = "";
+    requiredProps.forEach((prop) => {
+      if (!httpRequest.body[prop]) {
+        msg += `${prop} `;
+      }
+    });
+    if (msg.length) {
       return {
         statusCode: 400,
-        body: new Error(`Error in: ${error}`),
+        body: new Error(`Error in: ${msg.trim().replace(/\s/gm, ", ")}`),
       };
     }
+    // const { name, model, year } = httpRequest.body;
     return { statusCode: 200, body: { message: "success" } };
   };
 }
