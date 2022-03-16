@@ -28,7 +28,10 @@ const config: Config.InitialOptions = {
   coverageDirectory: "coverage",
 
   // An array of regexp pattern strings used to skip coverage collection
-  coveragePathIgnorePatterns: ["**/interface/**", "**/helpers/**"],
+  coveragePathIgnorePatterns: [
+    "<rootDir>/src/interface",
+    "<rootDir>/src/helpers",
+  ],
 
   // Indicates which provider should be used to instrument code for coverage
   coverageProvider: "v8",
