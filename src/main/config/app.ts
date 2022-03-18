@@ -1,9 +1,13 @@
 import express from 'express';
 import 'dotenv/config';
-import appRoutes from './app.routes';
+import apiRoutes from './app.routes';
+import middleware from './middleware';
 // import { config as dotenv } from 'dotenv';
 
 const app = express();
-app.use('/api/v1', appRoutes);
+
+middleware(app);
+
+app.use('/api/v1', apiRoutes);
 
 export default app;
