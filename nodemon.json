@@ -1,0 +1,10 @@
+{
+  "ext": "ts",
+  "ignore": [
+    "*.test.ts"
+  ],
+  "delay": "3",
+  "execMap": {
+    "ts": "npx ts-node"
+  }
+}
