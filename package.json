@@ -7,8 +7,12 @@
     "prepare": "husky install",
     "start": "nodemon src/main/server/server.ts",
     "serve:tsnd": "tsnd --transpile-only --respawn --ignore-watch node_modules src/main/server/server.ts",
-    "test": "jest",
+    "test": "jest --passWithNoTests --silent --noStackTrace",
+    "test:all": "jest",
     "test:watch": "jest --watch",
+    "test:unit": "npm test -- -c jest.unit.config.ts",
+    "test:int": "npm test -- -c jest.integration.config.ts",
+    "coverage": "npm test -- --coverage",
     "eslint": "eslint 'src/**/*.ts'",
     "eslint:fix": "eslint --fix 'src/**/*.ts'"
   },
