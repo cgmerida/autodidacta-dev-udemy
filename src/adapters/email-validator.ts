@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import IEmailValidator from '../protocols/email-validator';
+import IEmailValidator from '../interfaces/email-validator';
 
 const emailSchema = Joi.string().email().lowercase().required();
 
