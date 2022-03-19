@@ -1,4 +1,4 @@
-import VehicleHelper from "../helpers/vehicle-model-helper";
+import VehicleHelper from '../helpers/vehicle-model-helper';
 
 class Vehicle {
   constructor(private readonly vehicle: VehicleHelper) {}

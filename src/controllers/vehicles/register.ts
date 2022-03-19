@@ -1,23 +1,36 @@
-import MissingFormalParameter from "../../errors/client-errors";
-import { HttpRequest, HttpResponse } from "../../interfaces/IHttp";
+import { AddAccount } from '../../domain/useCase/add-account';
+import MissingFormalParameter from '../../errors/client-errors';
+import { serverError, success } from '../../helpers/http-helper';
+import IController from '../../interfaces/IController';
+import { HttpRequest, HttpResponse } from '../../interfaces/IHttp';
 
-export default class RegisterVehicle {
+export default class RegisterVehicle implements IController {
+  constructor(private readonly addAccount: AddAccount) {
+    this.addAccount = addAccount;
+  }
+
   // eslint-disable-next-line class-methods-use-this
-  handle = (httpRequest: HttpRequest): HttpResponse => {
-    const requiredProps = ["name", "model", "year", "color"];
-    let msg = "";
-    requiredProps.forEach((prop) => {
-      if (!httpRequest.body[prop]) {
-        msg += `${prop} `;
+  handle = async (httpRequest: HttpRequest): Promise<HttpResponse> => {
+    const requiredProps = ['name', 'model', 'year', 'color'];
+    try {
+      let msg = '';
+      requiredProps.forEach((prop) => {
+        if (!httpRequest.body[prop]) {
+          msg += `${prop} `;
+        }
+      });
+      if (msg.length) {
+        return {
+          statusCode: 400,
+          body: new MissingFormalParameter(
+            `${msg.trim().replace(/\s/gm, ', ')}`
+          ),
+        };
       }
-    });
-    if (msg.length) {
-      return {
-        statusCode: 400,
-        body: new MissingFormalParameter(`${msg.trim().replace(/\s/gm, ", ")}`),
-      };
+    } catch (err) {
+      serverError(err);
     }
-    // const { name, model, year } = httpRequest.body;
-    return { statusCode: 200, body: { message: "success" } };
+    const vehicle = await this.addAccount.add(httpRequest.body);
+    return success(vehicle);
   };
 }
