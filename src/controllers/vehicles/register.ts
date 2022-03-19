@@ -1,6 +1,10 @@
 import { AddAccount } from '../../domain/useCase/add-account';
 import MissingFormalParameter from '../../errors/client-errors';
-import { serverError, success } from '../../helpers/http-helper';
+import {
+  badRequestError,
+  serverError,
+  success,
+} from '../../helpers/http-helper';
 import IController from '../../interfaces/IController';
 import { HttpRequest, HttpResponse } from '../../interfaces/IHttp';
 
@@ -20,15 +24,12 @@ export default class RegisterVehicle implements IController {
         }
       });
       if (msg.length) {
-        return {
-          statusCode: 400,
-          body: new MissingFormalParameter(
-            `${msg.trim().replace(/\s/gm, ', ')}`
-          ),
-        };
+        return badRequestError(
+          new MissingFormalParameter(`${msg.trim().replace(/\s/gm, ', ')}`)
+        );
       }
     } catch (err) {
-      serverError(err);
+      return serverError(err);
     }
     const vehicle = await this.addAccount.add(httpRequest.body);
     return success(vehicle);

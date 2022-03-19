@@ -1,13 +1,16 @@
-import ServerError from '../errors/server-errors';
+import { ServerError } from '../errors/server';
 import { HttpResponse } from '../interfaces/IHttp';
 
-// eslint-disable-next-line import/prefer-default-export
+export const badRequestError = (error: Error): HttpResponse => ({
+  statusCode: 400,
+  body: { message: error.message },
+});
+
 export const serverError = (error: Error): HttpResponse => ({
   statusCode: 500,
   body: new ServerError(error.stack),
 });
 
-// eslint-disable-next-line import/prefer-default-export
 export const success = (data: any): HttpResponse => ({
   statusCode: 200,
   body: data,
